@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # 1. The Sentinel API
+  api:
+    build: .
+    container_name: sentinel_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://sentinel:securepass@db:5432/sentinel_prod
+      - SECRET_KEY=change_this_secret_in_prod
+    restart: always
+
+  # 2. The Database (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: sentinel_db
+    environment:
+      - POSTGRES_USER=sentinel
+      - POSTGRES_PASSWORD=securepass
+      - POSTGRES_DB=sentinel_prod
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:

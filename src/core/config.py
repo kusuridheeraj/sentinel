@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     AZURE_CLIENT_SECRET: str = ""
     
     # Database
-    DATABASE_URL: str = "postgresql+asyncpg://user:password@localhost/sentinel"
+    DATABASE_URL: str = "sqlite+aiosqlite:///./sentinel.db"
     
     class Config:
         env_file = ".env"

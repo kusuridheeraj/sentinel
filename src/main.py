@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.core.config import get_settings
 from src.auth import router as auth_router
+from src.audit import router as audit_router
+from src.db.models import Base
+from src.db.session import engine
 
 settings = get_settings()
 
@@ -26,6 +29,12 @@ app.add_middleware(
 )
 
 app.include_router(auth_router.router, prefix="/auth", tags=["Authentication"])
+app.include_router(audit_router.router, prefix="/audit", tags=["Audit"])
+
+@app.on_event("startup")
+async def startup():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
 
 @app.get("/health")
 async def health_check():
@@ -38,4 +47,4 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("src.main:app", host="0.0.0.0", port=8000, reload=True)

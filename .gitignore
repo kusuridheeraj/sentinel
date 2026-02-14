@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# Database
+*.sqlite
+*.db
+
+# Distribution / Packaging
+dist/
+build/
+*.egg-info/
+agent/sentinel.tar.gz
+
+# Logs
+*.log
