@@ -28,6 +28,11 @@ Sentinel is a **Fail-Closed, Zero-Trust Gateway** that ensures:
 
 - [Architecture & Design Decisions](docs/ARCHITECTURE.md)
 - [Immutable Logs & Debugging Guide](docs/IMMUTABLE_LOGS.md)
+- [Codebase Guide (Deep Dive)](CODEBASE_GUIDE.md)
+- [Quick Start Guide](QUICK_START.md)
+- [Troubleshooting Guide](TROUBLESHOOTING.md)
+- [Architecture Decisions (ADR)](ARCHITECTURE_DECISIONS.md)
+- [New Developer Guide](NEW_DEVELOPER_GUIDE.md)
 
 ---
 
